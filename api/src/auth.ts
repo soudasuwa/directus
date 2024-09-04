@@ -8,6 +8,7 @@ import {
 	OAuth2AuthDriver,
 	OpenIDAuthDriver,
 	SAMLAuthDriver,
+	TelegramAuthDriver,
 } from './auth/drivers/index.js';
 import { DEFAULT_AUTH_PROVIDER } from './constants.js';
 import getDatabase from './database/index.js';
@@ -81,6 +82,9 @@ function getProviderInstance(
 	switch (driver) {
 		case 'local':
 			return new LocalAuthDriver(options, config);
+
+		case 'telegram':
+			return new TelegramAuthDriver(options, config);
 
 		case 'oauth2':
 			return new OAuth2AuthDriver(options, config);

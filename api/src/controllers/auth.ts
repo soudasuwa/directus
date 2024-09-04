@@ -9,6 +9,7 @@ import {
 	createOAuth2AuthRouter,
 	createOpenIDAuthRouter,
 	createSAMLAuthRouter,
+	createTelegramAuthRouter,
 } from '../auth/drivers/index.js';
 import { DEFAULT_AUTH_PROVIDER, REFRESH_COOKIE_OPTIONS, SESSION_COOKIE_OPTIONS } from '../constants.js';
 import { useLogger } from '../logger/index.js';
@@ -36,6 +37,10 @@ for (const authProvider of authProviders) {
 	switch (authProvider.driver) {
 		case 'local':
 			authRouter = createLocalAuthRouter(authProvider.name);
+			break;
+
+		case 'telegram':
+			authRouter = createTelegramAuthRouter(authProvider.name);
 			break;
 
 		case 'oauth2':
