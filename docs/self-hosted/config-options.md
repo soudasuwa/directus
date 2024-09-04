@@ -734,7 +734,7 @@ For each auth provider you list, you must also provide the following configurati
 
 | Variable                 | Description                                                                                                                                | Default Value |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
-| `AUTH_<PROVIDER>_DRIVER` | Which driver to use, either `local`, `oauth2`, `openid`, `ldap`, `saml`                                                                    | --            |
+| `AUTH_<PROVIDER>_DRIVER` | Which driver to use, either `local`, `oauth2`, `openid`, `ldap`, `saml`, `telegram`                                                        | --            |
 | `AUTH_<PROVIDER>_MODE`   | Whether to use `'cookie'` or `'session'` authentication mode when redirecting. Applies to the following drivers `oauth2`, `openid`, `saml` | `session`     |
 
 You may also be required to specify additional variables depending on the auth driver. See configuration details below.
@@ -902,6 +902,26 @@ Directus users "External Identifier".
 
 The `SP_metadata` and `IDP_metadata` variables should be set to the XML metadata provided by the service provider and
 identity provider respectively.
+
+### Telegram (`telegram`)
+
+Telegram mini app authorization though launch init data.
+
+| Variable                                 | Description                                                            | Default Value |
+| ---------------------------------------- | ---------------------------------------------------------------------- | ------------- |
+| `AUTH_<PROVIDER>_TOKEN`                  | Telegram bot token to verify user data hash.                           | --            |
+| `AUTH_<PROVIDER>_DEFAULT_ROLE_ID`        | A fallback Directus role ID to assign created users.                   | --            |
+
+### Example: Telegram
+
+```
+AUTH_PROVIDERS="telegram"
+
+AUTH_TELEGRAM_DRIVER="telegram"
+AUTH_TELEGRAM_TOKEN="1234567890:ABCDEF1234564123123123"
+AUTH_TELEGRAM_DEFAULT_ROLE_ID="directus-role-uuid-v4-herestring"
+
+```
 
 ### Example: Multiple Auth Providers
 
